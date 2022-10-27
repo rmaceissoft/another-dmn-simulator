@@ -8,12 +8,42 @@ const MAPPING_INPUT_TYPES = {
 };
 
 export default {
-  props: ['inputOutput'],
+  props: {
+    inputOutput: {
+      type: Object,
+      required: true,
+    },
+    testCase: {
+      type: Object,
+      required: true,
+    },
+    type: {
+      type: String,
+      required: false,
+      default: 'input',
+      validator: (value) => {
+        return ['input', 'output'].includes(value);
+      },
+    },
+  },
   computed: {
     htmlInputType() {
       return (
         MAPPING_INPUT_TYPES[this.inputOutput.type] ?? this.inputOutput.type
       );
+    },
+    objectWithValues() {
+      return this.type === 'input'
+        ? this.testCase.inputValues
+        : this.testCase.expectedValues;
+    },
+    inputOutputValue: {
+      get: function () {
+        return this.objectWithValues[this.inputOutput.input_id];
+      },
+      set: function (newValue) {
+        this.objectWithValues[this.inputOutput.input_id] = newValue;
+      },
     },
   },
 };
@@ -26,7 +56,7 @@ export default {
       :type="htmlInputType"
       :name="inputOutput.name"
       :id="inputOutput.input_id"
-      v-model="inputOutput.value"
+      v-model="inputOutputValue"
     />
     <br />
   </label>

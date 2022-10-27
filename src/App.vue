@@ -1,17 +1,32 @@
 <script>
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import TestCaseInputEditForm from './components/TestCaseInputEditForm.vue';
+import TestCaseEditForm from './components/TestCaseEditForm.vue';
 
 export default {
   components: {
-    TestCaseInputEditForm,
+    TestCaseEditForm,
+  },
+  data() {
+    return {
+      sampleTestCase: {
+        decisionId: 'all',
+        name: 'Case de Prueba 1',
+        inputValues: {
+          seasonInput: 'summer',
+          guestCountInput: 2,
+        },
+        expectedValues: {
+          output1: 'failed',
+        },
+      },
+    };
   },
 };
 </script>
 
 <template>
-  <TestCaseInputEditForm decision-id="all" />
+  <TestCaseEditForm :test-case="sampleTestCase" />
 </template>
 
 <style scoped>

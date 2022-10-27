@@ -34,11 +34,20 @@
       "inputs": [
         {
           "name": "temperature",
-          "label": "Weather in Celsius",
+          "label": "Weat her in Celsius",
           "input_id": "temperatureInput",
           "type": "integer"
         }
       ],
+      "outputs": [
+        {
+          "name": "Output1",
+          "label": "\"Output 1\"",
+          "input_id": "output1",
+          "type": "string"
+        }
+      ],
+
       "xmlStr": "&lt;?xml version=&quot;1.0&quot;?&gt;&lt;definitions id=&quot;season&quot; name=&quot;Season decision&quot; xmlns=&quot;http://www.omg.org/spec/DMN/20151101/dmn.xsd&quot;&gt;&lt;decision id=&quot;season&quot; name=&quot;Season decision&quot;&gt;&lt;decisionTable id=&quot;seasonDecisionTable&quot;&gt;&lt;input id=&quot;temperatureInput&quot; label=&quot;Weather in Celsius&quot;&gt;&lt;inputExpression id=&quot;temperatureInputExpression&quot; typeRef=&quot;integer&quot;&gt;&lt;text&gt;temperature&lt;/text&gt;&lt;/inputExpression&gt;&lt;/input&gt;&lt;output id=&quot;seasonOutput&quot; label=&quot;season&quot; name=&quot;season&quot; typeRef=&quot;string&quot;/&gt;&lt;rule id=&quot;row-495762709-5&quot;&gt;&lt;inputEntry id=&quot;UnaryTests_1fd0eqo&quot;&gt;&lt;text&gt;&amp;gt;30&lt;/text&gt;&lt;/inputEntry&gt;&lt;outputEntry id=&quot;LiteralExpression_0l98klb&quot;&gt;&lt;text&gt;&quot;Summer&quot;&lt;/text&gt;&lt;/outputEntry&gt;&lt;/rule&gt;&lt;rule id=&quot;row-495762709-6&quot;&gt;&lt;inputEntry id=&quot;UnaryTests_1nz6at2&quot;&gt;&lt;text&gt;&amp;lt;10&lt;/text&gt;&lt;/inputEntry&gt;&lt;outputEntry id=&quot;LiteralExpression_08moy1k&quot;&gt;&lt;text&gt;&quot;Winter&quot;&lt;/text&gt;&lt;/outputEntry&gt;&lt;/rule&gt;&lt;rule id=&quot;row-445981423-2&quot;&gt;&lt;inputEntry id=&quot;UnaryTests_1a0imxy&quot;&gt;&lt;text&gt;[10..30]&lt;/text&gt;&lt;/inputEntry&gt;&lt;outputEntry id=&quot;LiteralExpression_1poftw4&quot;&gt;&lt;text&gt;&quot;Spring&quot;&lt;/text&gt;&lt;/outputEntry&gt;&lt;/rule&gt;&lt;/decisionTable&gt;&lt;informationRequirement id=&quot;InformationRequirement_03uqyun&quot;&gt;&lt;requiredInput href=&quot;#temperature_id&quot;/&gt;&lt;/informationRequirement&gt;&lt;/decision&gt;&lt;/definitions&gt;"
     },
     {

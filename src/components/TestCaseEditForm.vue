@@ -3,7 +3,7 @@ import jsonModel from '/src/components/model.json';
 import TestCaseInputOutputItem from '/src/components/TestCaseInputOutputItem.vue';
 
 export default {
-  props: ['decisionId'],
+  props: ['testCase'],
   components: {
     TestCaseInputOutputItem,
   },
@@ -14,11 +14,11 @@ export default {
   },
   computed: {
     decisions() {
-      if (this.decisionId == 'all') {
+      if (this.testCase.decisionId == 'all') {
         return this.myJson1.decisions;
       } else {
         return this.myJson1.decisions.filter(
-          (item) => item.decision_id == this.decisionId
+          (item) => item.decision_id == this.testCase.decisionId
         );
       }
     },
@@ -27,13 +27,27 @@ export default {
 </script>
 
 <template>
-  <h2>Decision: {{ decisionId }}</h2>
+  <h2>Decision: {{ testCase.decisionId }}</h2>
 
   <template v-for="decision in decisions">
     <TestCaseInputOutputItem
       v-for="input in decision.inputs"
       :input-output="input"
+      :test-case="testCase"
       :key="input.input_id"
     />
+    <TestCaseInputOutputItem
+      v-for="output in decision.outputs"
+      type="output"
+      :input-output="output"
+      :test-case="testCase"
+      :key="output.input_id"
+    />
   </template>
+
+  <h3>Debug TestCase Input Values</h3>
+  {{ testCase.inputValues }}
+
+  <h3>Debug TestCase Expected Values</h3>
+  {{ testCase.expectedValues }}
 </template>
