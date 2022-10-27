@@ -34,14 +34,14 @@ export default {
       v-for="input in decision.inputs"
       :input-output="input"
       :test-case="testCase"
-      :key="input.input_id"
+      :key="input.id"
     />
     <TestCaseInputOutputItem
       v-for="output in decision.outputs"
       type="output"
       :input-output="output"
       :test-case="testCase"
-      :key="output.input_id"
+      :key="output.id"
     />
   </template>
 

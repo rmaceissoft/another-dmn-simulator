@@ -39,10 +39,10 @@ export default {
     },
     inputOutputValue: {
       get: function () {
-        return this.objectWithValues[this.inputOutput.input_id];
+        return this.objectWithValues[this.inputOutput.id];
       },
       set: function (newValue) {
-        this.objectWithValues[this.inputOutput.input_id] = newValue;
+        this.objectWithValues[this.inputOutput.id] = newValue;
       },
     },
   },
@@ -50,12 +50,12 @@ export default {
 </script>
 
 <template>
-  <label :for="inputOutput.input_id">
+  <label :for="inputOutput.id">
     <span>{{ inputOutput.label }}</span>
     <input
       :type="htmlInputType"
       :name="inputOutput.name"
-      :id="inputOutput.input_id"
+      :id="inputOutput.id"
       v-model="inputOutputValue"
     />
     <br />
