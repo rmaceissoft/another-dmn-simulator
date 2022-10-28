@@ -78,7 +78,7 @@ export default {
 
   <h3>Inputs</h3>
   <template v-for="decision in filteredDecisions">
-    <h4>{{ decision.name }}</h4>
+    <h4 v-if="testCase.decisionId == 'all'">{{ decision.name }}</h4>
     <TestCaseInputOutputItem
       v-for="input in decision.inputs"
       :input-output="input"
@@ -89,7 +89,7 @@ export default {
 
   <h3>Outputs</h3>
   <template v-for="decision in filteredDecisions">
-    <h4>{{ decision.name }}</h4>
+    <h4 v-if="testCase.decisionId == 'all'">{{ decision.name }}</h4>
     <TestCaseInputOutputItem
       v-for="output in decision.outputs"
       type="output"

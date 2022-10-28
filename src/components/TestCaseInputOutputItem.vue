@@ -50,13 +50,14 @@ export default {
 </script>
 
 <template>
-  <label :for="inputOutput.id">
+  <label :for="inputOutput.id" v-if="type !== 'input' || !inputOutput.binded">
     <span>{{ inputOutput.label }}</span>
     <input
       :type="htmlInputType"
       :name="inputOutput.name"
       :id="inputOutput.id"
       v-model="inputOutputValue"
+      :readonly="inputOutput.binded"
     />
     <br />
   </label>
