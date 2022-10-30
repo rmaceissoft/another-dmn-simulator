@@ -19,12 +19,13 @@ const sanitizeTestCaseValues = (testCase) => {
       // sanitize input values
       const inputKeys = getInputIdsFromDecision(selectedDecision);
       testCase.inputValues = Object.fromEntries(
-        inputKeys.map((key) => [key, testCase.inputValues[key]])
+        inputKeys.map((key) => [key, testCase.inputValues[key] ?? ''])
       );
+
       // sanitize expected values
       const outputKeys = getOutputIdsFromDecision(selectedDecision);
       testCase.expectedValues = Object.fromEntries(
-        outputKeys.map((key) => [key, testCase.expectedValues[key]])
+        outputKeys.map((key) => [key, testCase.expectedValues[key] ?? ''])
       );
     }
   }
