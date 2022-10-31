@@ -2,6 +2,16 @@
 import jsonModel from '/src/components/model.json';
 import TestCaseInputOutputItem from '/src/components/TestCaseInputOutputItem.vue';
 
+const getDecisionsByTestCase = (testCase, model) => {
+  if (testCase.decisionId == 'all') {
+    return model.decisions;
+  } else {
+    return model.decisions.filter(
+      (item) => item.decision_id == testCase.decisionId
+    );
+  }
+};
+
 const getInputIdsFromDecision = (decision) => {
   return decision.inputs.map((item) => item.id);
 };
@@ -11,24 +21,28 @@ const getOutputIdsFromDecision = (decision) => {
 };
 
 const sanitizeTestCaseValues = (testCase) => {
-  if (testCase.decisionId !== 'all') {
-    const selectedDecision = jsonModel.decisions.find(
-      (item) => item.decision_id == testCase.decisionId
-    );
-    if (selectedDecision) {
-      // sanitize input values
-      const inputKeys = getInputIdsFromDecision(selectedDecision);
-      testCase.inputValues = Object.fromEntries(
-        inputKeys.map((key) => [key, testCase.inputValues[key] ?? ''])
-      );
+  const decisions = getDecisionsByTestCase(testCase, jsonModel);
 
-      // sanitize expected values
-      const outputKeys = getOutputIdsFromDecision(selectedDecision);
-      testCase.expectedValues = Object.fromEntries(
-        outputKeys.map((key) => [key, testCase.expectedValues[key] ?? ''])
-      );
-    }
-  }
+  // obtain all input / outpus keys related to decisions
+  const keys = decisions.reduce(
+    (acc, cur) => {
+      return {
+        input: [...acc.input, ...getInputIdsFromDecision(cur)],
+        output: [...acc.output, ...getOutputIdsFromDecision(cur)],
+      };
+    },
+    { input: [], output: [] }
+  );
+
+  // sanitize input values
+  testCase.inputValues = Object.fromEntries(
+    keys.input.map((key) => [key, testCase.inputValues[key] ?? ''])
+  );
+
+  // sanitize expected values
+  testCase.expectedValues = Object.fromEntries(
+    keys.output.map((key) => [key, testCase.expectedValues[key] ?? ''])
+  );
 };
 
 export default {
@@ -51,13 +65,7 @@ export default {
       return this.myJson1.decisions;
     },
     filteredDecisions() {
-      if (this.testCase.decisionId == 'all') {
-        return this.myJson1.decisions;
-      } else {
-        return this.myJson1.decisions.filter(
-          (item) => item.decision_id == this.testCase.decisionId
-        );
-      }
+      return getDecisionsByTestCase(this.testCase, this.myJson1);
     },
   },
   methods: {
