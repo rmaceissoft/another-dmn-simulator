@@ -39,10 +39,10 @@ export default {
     },
     inputOutputValue: {
       get: function () {
-        return this.objectWithValues[this.inputOutput.id];
+        return this.objectWithValues[this.inputOutput.name];
       },
       set: function (newValue) {
-        this.objectWithValues[this.inputOutput.id] = newValue;
+        this.objectWithValues[this.inputOutput.name] = newValue;
       },
     },
   },

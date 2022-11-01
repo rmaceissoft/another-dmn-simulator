@@ -1,4 +1,5 @@
 <script>
+import { mapActions } from 'vuex'
 import jsonModel from '/src/components/model.json';
 import TestCaseInputOutputItem from '/src/components/TestCaseInputOutputItem.vue';
 
@@ -12,12 +13,12 @@ const getDecisionsByTestCase = (testCase, model) => {
   }
 };
 
-const getInputIdsFromDecision = (decision) => {
-  return decision.inputs.map((item) => item.id);
+const getInputNamesFromDecision = (decision) => {
+  return decision.inputs.map((item) => item.name);
 };
 
-const getOutputIdsFromDecision = (decision) => {
-  return decision.outputs.map((item) => item.id);
+const getOutputNamesFromDecision = (decision) => {
+  return decision.outputs.map((item) => item.name);
 };
 
 const sanitizeTestCaseValues = (testCase) => {
@@ -27,8 +28,8 @@ const sanitizeTestCaseValues = (testCase) => {
   const keys = decisions.reduce(
     (acc, cur) => {
       return {
-        input: [...acc.input, ...getInputIdsFromDecision(cur)],
-        output: [...acc.output, ...getOutputIdsFromDecision(cur)],
+        input: [...acc.input, ...getInputNamesFromDecision(cur)],
+        output: [...acc.output, ...getOutputNamesFromDecision(cur)],
       };
     },
     { input: [], output: [] }
@@ -69,6 +70,7 @@ export default {
     },
   },
   methods: {
+    ...mapActions('testCases', ['evaluateTestCase']),
     refreshValuesObject() {
       sanitizeTestCaseValues(this.testCase);
     },
@@ -77,6 +79,9 @@ export default {
 </script>
 
 <template>
+  <h2>{{ testCase.name }}</h2>
+  <button @click="evaluateTestCase(testCase)">Evaluar</button>
+
   <h2>Decision: {{ testCase.decisionId }}</h2>
   <select v-model="testCase.decisionId">
     <option value="all">All</option>

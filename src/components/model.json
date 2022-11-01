@@ -23,7 +23,8 @@
           "name": "guestCount",
           "label": "How many guests",
           "id": "guestCountInput",
-          "type": "integer"
+          "type": "integer",
+          "binded": true
         }
       ],
       "outputs": [
@@ -33,6 +34,11 @@
           "id": "output1",
           "type": "string"
         }
+      ],
+      "required": [
+        "guestCount",
+        "season",
+        "Decision_098q2pi"
       ],
       "xmlStr": "&lt;?xml version=&quot;1.0&quot;?&gt;&lt;definitions id=&quot;dish-decision&quot; name=&quot;Dish Decision&quot; xmlns=&quot;http://www.omg.org/spec/DMN/20151101/dmn.xsd&quot;&gt;&lt;decision id=&quot;dish-decision&quot; name=&quot;Dish Decision&quot;&gt;&lt;authorityRequirement id=&quot;AuthorityRequirement_01vpgc7&quot;&gt;&lt;requiredAuthority href=&quot;#host_ks&quot;/&gt;&lt;/authorityRequirement&gt;&lt;decisionTable id=&quot;dishDecisionTable&quot;&gt;&lt;input id=&quot;seasonInput&quot; label=&quot;Season&quot;&gt;&lt;inputExpression id=&quot;seasonInputExpression&quot; typeRef=&quot;string&quot;&gt;&lt;text&gt;season&lt;/text&gt;&lt;/inputExpression&gt;&lt;/input&gt;&lt;input id=&quot;guestCountInput&quot; label=&quot;How many guests&quot;&gt;&lt;inputExpression id=&quot;guestCountInputExpression&quot; typeRef=&quot;integer&quot;&gt;&lt;text&gt;guestCount&lt;/text&gt;&lt;/inputExpression&gt;&lt;/input&gt;&lt;output id=&quot;output1&quot; label=&quot;Dish&quot; name=&quot;desiredDish&quot; typeRef=&quot;string&quot;/&gt;&lt;rule id=&quot;row-495762709-1&quot;&gt;&lt;inputEntry id=&quot;UnaryTests_1nxcsjr&quot;&gt;&lt;text&gt;&quot;Winter&quot;&lt;/text&gt;&lt;/inputEntry&gt;&lt;inputEntry id=&quot;UnaryTests_1r9yorj&quot;&gt;&lt;text&gt;&amp;lt;= 8&lt;/text&gt;&lt;/inputEntry&gt;&lt;outputEntry id=&quot;LiteralExpression_1mtwzqz&quot;&gt;&lt;text&gt;&quot;Spareribs&quot;&lt;/text&gt;&lt;/outputEntry&gt;&lt;/rule&gt;&lt;rule id=&quot;row-495762709-2&quot;&gt;&lt;inputEntry id=&quot;UnaryTests_1lxjbif&quot;&gt;&lt;text&gt;&quot;Winter&quot;&lt;/text&gt;&lt;/inputEntry&gt;&lt;inputEntry id=&quot;UnaryTests_0nhiedb&quot;&gt;&lt;text&gt;&amp;gt; 8&lt;/text&gt;&lt;/inputEntry&gt;&lt;outputEntry id=&quot;LiteralExpression_1h30r12&quot;&gt;&lt;text&gt;&quot;Pasta&quot;&lt;/text&gt;&lt;/outputEntry&gt;&lt;/rule&gt;&lt;rule id=&quot;row-495762709-3&quot;&gt;&lt;inputEntry id=&quot;UnaryTests_0ifgmfm&quot;&gt;&lt;text&gt;&quot;Summer&quot;&lt;/text&gt;&lt;/inputEntry&gt;&lt;inputEntry id=&quot;UnaryTests_12cib9m&quot;&gt;&lt;text&gt;&amp;gt; 10&lt;/text&gt;&lt;/inputEntry&gt;&lt;outputEntry id=&quot;LiteralExpression_0wgaegy&quot;&gt;&lt;text&gt;&quot;Light salad&quot;&lt;/text&gt;&lt;/outputEntry&gt;&lt;/rule&gt;&lt;rule id=&quot;row-495762709-7&quot;&gt;&lt;inputEntry id=&quot;UnaryTests_0ozm9s7&quot;&gt;&lt;text&gt;&quot;Summer&quot;&lt;/text&gt;&lt;/inputEntry&gt;&lt;inputEntry id=&quot;UnaryTests_0sesgov&quot;&gt;&lt;text&gt;&amp;lt;= 10&lt;/text&gt;&lt;/inputEntry&gt;&lt;outputEntry id=&quot;LiteralExpression_1dvc5x3&quot;&gt;&lt;text&gt;&quot;Beans salad&quot;&lt;/text&gt;&lt;/outputEntry&gt;&lt;/rule&gt;&lt;rule id=&quot;row-445981423-3&quot;&gt;&lt;inputEntry id=&quot;UnaryTests_1er0je1&quot;&gt;&lt;text&gt;&quot;Spring&quot;&lt;/text&gt;&lt;/inputEntry&gt;&lt;inputEntry id=&quot;UnaryTests_1uzqner&quot;&gt;&lt;text&gt;&amp;lt; 10&lt;/text&gt;&lt;/inputEntry&gt;&lt;outputEntry id=&quot;LiteralExpression_1pxy4g1&quot;&gt;&lt;text&gt;&quot;Stew&quot;&lt;/text&gt;&lt;/outputEntry&gt;&lt;/rule&gt;&lt;rule id=&quot;row-445981423-4&quot;&gt;&lt;inputEntry id=&quot;UnaryTests_06or48g&quot;&gt;&lt;text&gt;&quot;Spring&quot;&lt;/text&gt;&lt;/inputEntry&gt;&lt;inputEntry id=&quot;UnaryTests_0wa71sy&quot;&gt;&lt;text&gt;&amp;gt;= 10&lt;/text&gt;&lt;/inputEntry&gt;&lt;outputEntry id=&quot;LiteralExpression_09ggol9&quot;&gt;&lt;text&gt;&quot;Steak&quot;&lt;/text&gt;&lt;/outputEntry&gt;&lt;/rule&gt;&lt;/decisionTable&gt;&lt;informationRequirement id=&quot;InformationRequirement_10q46rn&quot;&gt;&lt;requiredDecision href=&quot;#guestCount&quot;/&gt;&lt;/informationRequirement&gt;&lt;informationRequirement id=&quot;InformationRequirement_0o1sd05&quot;&gt;&lt;requiredDecision href=&quot;#season&quot;/&gt;&lt;/informationRequirement&gt;&lt;informationRequirement id=&quot;InformationRequirement_1w65ig7&quot;&gt;&lt;requiredDecision href=&quot;#Decision_098q2pi&quot;/&gt;&lt;/informationRequirement&gt;&lt;/decision&gt;&lt;/definitions&gt;"
     },
@@ -57,6 +63,7 @@
           "binded": true
         }
       ],
+      "required": null,
       "xmlStr": "&lt;?xml version=&quot;1.0&quot;?&gt;&lt;definitions id=&quot;season&quot; name=&quot;Season decision&quot; xmlns=&quot;http://www.omg.org/spec/DMN/20151101/dmn.xsd&quot;&gt;&lt;decision id=&quot;season&quot; name=&quot;Season decision&quot;&gt;&lt;decisionTable id=&quot;seasonDecisionTable&quot;&gt;&lt;input id=&quot;temperatureInput&quot; label=&quot;Weather in Celsius&quot;&gt;&lt;inputExpression id=&quot;temperatureInputExpression&quot; typeRef=&quot;integer&quot;&gt;&lt;text&gt;temperature&lt;/text&gt;&lt;/inputExpression&gt;&lt;/input&gt;&lt;output id=&quot;seasonOutput&quot; label=&quot;season&quot; name=&quot;season&quot; typeRef=&quot;string&quot;/&gt;&lt;rule id=&quot;row-495762709-5&quot;&gt;&lt;inputEntry id=&quot;UnaryTests_1fd0eqo&quot;&gt;&lt;text&gt;&amp;gt;30&lt;/text&gt;&lt;/inputEntry&gt;&lt;outputEntry id=&quot;LiteralExpression_0l98klb&quot;&gt;&lt;text&gt;&quot;Summer&quot;&lt;/text&gt;&lt;/outputEntry&gt;&lt;/rule&gt;&lt;rule id=&quot;row-495762709-6&quot;&gt;&lt;inputEntry id=&quot;UnaryTests_1nz6at2&quot;&gt;&lt;text&gt;&amp;lt;10&lt;/text&gt;&lt;/inputEntry&gt;&lt;outputEntry id=&quot;LiteralExpression_08moy1k&quot;&gt;&lt;text&gt;&quot;Winter&quot;&lt;/text&gt;&lt;/outputEntry&gt;&lt;/rule&gt;&lt;rule id=&quot;row-445981423-2&quot;&gt;&lt;inputEntry id=&quot;UnaryTests_1a0imxy&quot;&gt;&lt;text&gt;[10..30]&lt;/text&gt;&lt;/inputEntry&gt;&lt;outputEntry id=&quot;LiteralExpression_1poftw4&quot;&gt;&lt;text&gt;&quot;Spring&quot;&lt;/text&gt;&lt;/outputEntry&gt;&lt;/rule&gt;&lt;/decisionTable&gt;&lt;informationRequirement id=&quot;InformationRequirement_03uqyun&quot;&gt;&lt;requiredInput href=&quot;#temperature_id&quot;/&gt;&lt;/informationRequirement&gt;&lt;/decision&gt;&lt;/definitions&gt;"
     },
     {
@@ -76,9 +83,11 @@
           "name": "guestCount",
           "label": "Guest count",
           "id": "guestCountOutput",
-          "type": "integer"
+          "type": "integer",
+          "binded": true
         }
       ],
+      "required": null,
       "xmlStr": "&lt;?xml version=&quot;1.0&quot;?&gt;&lt;definitions id=&quot;guestCount&quot; name=&quot;Guest Count&quot; xmlns=&quot;http://www.omg.org/spec/DMN/20151101/dmn.xsd&quot;&gt;&lt;decision id=&quot;guestCount&quot; name=&quot;Guest Count&quot;&gt;&lt;decisionTable id=&quot;guestCountDecisionTable&quot;&gt;&lt;input id=&quot;typeOfDayInput&quot; label=&quot;Type of day&quot;&gt;&lt;inputExpression id=&quot;typeOfDayInputExpression&quot; typeRef=&quot;string&quot;&gt;&lt;text&gt;dayType&lt;/text&gt;&lt;/inputExpression&gt;&lt;/input&gt;&lt;output id=&quot;guestCountOutput&quot; label=&quot;Guest count&quot; name=&quot;guestCount&quot; typeRef=&quot;integer&quot;/&gt;&lt;rule id=&quot;row-495762709-8&quot;&gt;&lt;inputEntry id=&quot;UnaryTests_0l72u8n&quot;&gt;&lt;text&gt;&quot;Weekday&quot;&lt;/text&gt;&lt;/inputEntry&gt;&lt;outputEntry id=&quot;LiteralExpression_0wuwqaz&quot;&gt;&lt;text&gt;4&lt;/text&gt;&lt;/outputEntry&gt;&lt;/rule&gt;&lt;rule id=&quot;row-495762709-9&quot;&gt;&lt;inputEntry id=&quot;UnaryTests_03a73o9&quot;&gt;&lt;text&gt;&quot;Holiday&quot;&lt;/text&gt;&lt;/inputEntry&gt;&lt;outputEntry id=&quot;LiteralExpression_1whn119&quot;&gt;&lt;text&gt;10&lt;/text&gt;&lt;/outputEntry&gt;&lt;/rule&gt;&lt;rule id=&quot;row-495762709-10&quot;&gt;&lt;inputEntry id=&quot;UnaryTests_12tygwt&quot;&gt;&lt;text&gt;&quot;Weekend&quot;&lt;/text&gt;&lt;/inputEntry&gt;&lt;outputEntry id=&quot;LiteralExpression_1b5k9t8&quot;&gt;&lt;text&gt;15&lt;/text&gt;&lt;/outputEntry&gt;&lt;/rule&gt;&lt;/decisionTable&gt;&lt;informationRequirement id=&quot;InformationRequirement_1138yrh&quot;&gt;&lt;requiredInput href=&quot;#dayType_id&quot;/&gt;&lt;/informationRequirement&gt;&lt;knowledgeRequirement id=&quot;KnowledgeRequirement_1n7aj0o&quot;&gt;&lt;requiredKnowledge href=&quot;#elMenu&quot;/&gt;&lt;/knowledgeRequirement&gt;&lt;/decision&gt;&lt;/definitions&gt;"
     },
     {
@@ -98,9 +107,11 @@
           "name": "NombreVarialbeleExpresion",
           "label": "ExpresionHola",
           "id": "Decision_098q2pi",
-          "type": "string"
+          "type": "string",
+          "binded": true
         }
       ],
+      "required": null,
       "xmlStr": "&lt;?xml version=&quot;1.0&quot;?&gt;&lt;definitions id=&quot;Decision_098q2pi&quot; name=&quot;ExpresionHola&quot; xmlns=&quot;http://www.omg.org/spec/DMN/20151101/dmn.xsd&quot;&gt;&lt;decision id=&quot;Decision_098q2pi&quot; name=&quot;ExpresionHola&quot;&gt;&lt;literalExpression id=&quot;LiteralExpression_0neb77h&quot;&gt;&lt;text&gt;&quot;HOLA&quot;&lt;/text&gt;&lt;/literalExpression&gt;&lt;variable id=&quot;InformationItem_1ps0u3b&quot; name=&quot;NombreVarialbeleExpresion&quot; typeRef=&quot;string&quot;/&gt;&lt;/decision&gt;&lt;/definitions&gt;"
     }
   ]
