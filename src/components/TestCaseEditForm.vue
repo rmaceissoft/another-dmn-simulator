@@ -13,12 +13,22 @@ const getDecisionsByTestCase = (testCase, model) => {
   }
 };
 
-const getInputNamesFromDecision = (decision) => {
-  return decision.inputs.map((item) => item.name);
+const getInputNamesFromDecision = (decision, excludeBinded) => {
+  return decision.inputs.reduce((acc, cur) => {
+    if (!(excludeBinded && cur.binded)) {
+      acc.push(cur.name)
+    }
+    return acc
+  }, [])
 };
 
-const getOutputNamesFromDecision = (decision) => {
-  return decision.outputs.map((item) => item.name);
+const getOutputNamesFromDecision = (decision, excludeBinded) => {
+  return decision.outputs.reduce((acc, cur) => {
+    if (!(excludeBinded && cur.binded)) {
+      acc.push(cur.name)
+    }
+    return acc
+  }, [])
 };
 
 const sanitizeTestCaseValues = (testCase) => {
@@ -28,8 +38,8 @@ const sanitizeTestCaseValues = (testCase) => {
   const keys = decisions.reduce(
     (acc, cur) => {
       return {
-        input: [...acc.input, ...getInputNamesFromDecision(cur)],
-        output: [...acc.output, ...getOutputNamesFromDecision(cur)],
+        input: [...acc.input, ...getInputNamesFromDecision(cur, testCase.decisionId === 'all')],
+        output: [...acc.output, ...getOutputNamesFromDecision(cur, testCase.decisionId === 'all')],
       };
     },
     { input: [], output: [] }
