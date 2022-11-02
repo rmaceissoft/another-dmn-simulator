@@ -19,7 +19,7 @@ const actions = {
   },
   
   async evaluateTestCase ({ commit, state }, testCase) {
-    const invokeApi = (decision, inputValues, isAll) => {
+    const invokeApi = (decision, inputValues) => {
       // TODO: get only the input values related to current decision
       // 1. Obtain an array with input names related to the given decision (check getInputNamesFromDecision)
       // const inputNames = getInputNamesFromDecision(decision)
@@ -37,14 +37,14 @@ const actions = {
           // DMN was successfully parsed
           const context = inputValues
           try {
-            let output = null
-            if (isAll) {
-              output = decisionTable.evaluateAllDecisions(decisions, context)
-            } else {
-              output = decisionTable.evaluateDecision(decision.decision_id, decisions, context)
-            }
+              // NOTE: example to evaluate all decisions
+              // output = decisionTable.evaluateAllDecisions(decisions, context)
+              const output = decisionTable.evaluateDecision(decision.decision_id, decisions, context)
             console.log(output)
-            testCase.outputValues = output
+            testCase.outputValues = {
+              ...testCase.outputValues,
+              ...output
+            }
             return output
           } catch (err) {
             // failed to evaluate rule, maybe the context is missing some data?
@@ -58,7 +58,6 @@ const actions = {
     }
 
     const evaluateDecision = (decision, inputValues, isAll) => {
-      /*
       if (decision.required && isAll) {
         console.log('required = true')
         decision.required.forEach( (decisionId) => { 
@@ -69,9 +68,8 @@ const actions = {
           }
         })
       }
-      */
       // invoke api endpoint with proper values and return object with real output values
-      return invokeApi(decision, inputValues, isAll)
+      return invokeApi(decision, inputValues)
     }
     
     // TODO: invoke sanitizeTestCaseValues

@@ -22,7 +22,7 @@ export default {
       required: false,
       default: 'input',
       validator: (value) => {
-        return ['input', 'output'].includes(value);
+        return ['input', 'output', 'expected'].includes(value);
       },
     },
   },
@@ -33,9 +33,12 @@ export default {
       );
     },
     objectWithValues() {
-      return this.type === 'input'
-        ? this.testCase.inputValues
-        : this.testCase.expectedValues;
+      const FIELDS_MAPPING = {
+        'input': 'inputValues',
+        'output': 'outputValues',
+        'expected': 'expectedValues'
+      }
+      return this.testCase[FIELDS_MAPPING[this.type]]
     },
     inputOutputValue: {
       get: function () {
@@ -51,11 +54,11 @@ export default {
       // 1. the decision of the test case is set to all
       // 2. it's of type input
       // 3. the input is binded
-      return this.testCase.decisionId === 'all' && this.type === 'input' && this.inputOutput.binded
+      return this.testCase.decisionId === 'all' && ['input', 'expected'].includes(this.type) && this.inputOutput.binded
     },
     // determine is the input / output should be readonly
     isReadOnly() {
-      return this.testCase.decisionId === 'all' && this.inputOutput.binded
+      return this.type === 'output'
     }
   },
 };

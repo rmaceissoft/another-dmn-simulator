@@ -111,7 +111,19 @@ export default {
     />
   </template>
 
-  <h3>Outputs</h3>
+  <h3>Expected</h3>
+  <template v-for="decision in filteredDecisions">
+    <h4 v-if="testCase.decisionId == 'all'">{{ decision.name }}</h4>
+    <TestCaseInputOutputItem
+      v-for="output in decision.outputs"
+      type="expected"
+      :input-output="output"
+      :test-case="testCase"
+      :key="output.id"
+    />
+  </template>
+
+  <h3>Output</h3>
   <template v-for="decision in filteredDecisions">
     <h4 v-if="testCase.decisionId == 'all'">{{ decision.name }}</h4>
     <TestCaseInputOutputItem
@@ -122,6 +134,7 @@ export default {
       :key="output.id"
     />
   </template>
+
 
   <button @click="refreshValuesObject">Sanitize TestCase Values</button>
 
