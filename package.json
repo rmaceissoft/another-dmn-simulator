@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@arvind-agarwal/dmn-eval-js": "git+https://github.com/arvind-agarwal/dmn-eval-js.git",
     "vue": "^3.2.41",
     "vuex": "^4.0.2"
   },

@@ -120,4 +120,7 @@ export default {
 
   <h3>Debug TestCase Expected Values</h3>
   {{ testCase.expectedValues }}
+
+  <h3>Debug TestCase Output Values</h3>
+  {{ testCase.outputValues }}
 </template>
